@@ -3,6 +3,9 @@ changelog:
     labels:
       - ignore-for-release
       - do-not-merge
+      - duplicate
+      - invalid
+      - question
     authors:
       - dependabot[bot]
       - dependabot-preview[bot]

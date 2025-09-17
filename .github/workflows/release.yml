@@ -98,7 +98,7 @@ jobs:
 
             const cleanNotes = filteredSections.map(s => "## " + s.trim()).join("\n\n");
 
-            const customIntro = "👋 Hey community! The latest release is here. Check out what's new and improved:\n\n";
+            const customIntro = "👋 Hey community! Check out what's new and improved:\n\n";
 
             if(!cleanNotes) {
               return customIntro + "No changelog entries for this release.";
