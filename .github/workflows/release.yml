@@ -72,7 +72,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker buildx build \
-            --platform linux/amd64,linux/arm64 \
+            --platform linux/amd64 \
             -t karan076/karan-opsimate-test:${{ steps.version.outputs.version }} \
             -t karan076/karan-opsimate-test:latest \
             --push .
@@ -96,7 +96,11 @@ jobs:
               return body.includes("- ");
             });
 
-            return filteredSections.map(s => "## " + s.trim()).join("\n\n");
+            const cleanNotes = filteredSections.map(s => "## " + s.trim()).join("\n\n");
+
+            const customIntro = "👋 Hey community! The latest release is here. Check out what's new and improved:\n\n";
+
+            return customIntro + cleanNotes;
         env:
           TAG_NAME: ${{ steps.version.outputs.tag }}
 
