@@ -1,0 +1,36 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+      - do-not-merge
+    authors:
+      - dependabot[bot]
+      - dependabot-preview[bot]
+  categories:
+    - title: New Features 🚀
+      labels:
+        - enhancement
+        - feature
+        - semver-minor
+    - title: Bug Fixes 🐛
+      labels:
+        - bug
+        - fix
+    - title: Performance Improvements ⚡
+      labels:
+        - performance
+    - title: Documentation 📚
+      labels:
+        - documentation
+        - docs
+    - title: Refactoring & Maintenance 🛠
+      labels:
+        - refactor
+        - maintenance
+    - title: Other Changes
+      labels:
+        - "*"
+  contributors:
+    exclude:
+      - dependabot[bot]
+      - dependabot-preview[bot]

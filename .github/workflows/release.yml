@@ -81,6 +81,20 @@ jobs:
           -t opsimate/opsimate:latest \
           --push .
 
+    - name: Generate Release Notes
+      id: release_notes
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const notes = await github.rest.repos.generateReleaseNotes({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            tag_name: process.env.TAG_NAME,
+          });
+          return notes.data.body;
+      env:
+        TAG_NAME: ${{ steps.version.outputs.tag }}
+
     - name: Create GitHub Release
       uses: actions/create-release@v1
       env:
@@ -88,5 +102,6 @@ jobs:
       with:
         tag_name: ${{ steps.version.outputs.tag }}
         release_name: Release v${{ steps.version.outputs.version }}
+        body: ${{ steps.release_notes.outputs.result }}
         draft: false
         prerelease: false
