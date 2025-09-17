@@ -11,7 +11,7 @@ changelog:
       labels:
         - enhancement
         - feature
-        - semver-minor
+        - minor
     - title: Bug Fixes 🐛
       labels:
         - bug
@@ -34,3 +34,4 @@ changelog:
     exclude:
       - dependabot[bot]
       - dependabot-preview[bot]
+      
