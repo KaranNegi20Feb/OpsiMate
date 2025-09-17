@@ -72,7 +72,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker buildx build \
-            --platform linux/amd64 \
+            --platform linux/amd64,linux/arm64 \
             -t karan076/karan-opsimate-test:${{ steps.version.outputs.version }} \
             -t karan076/karan-opsimate-test:latest \
             --push .
@@ -100,7 +100,18 @@ jobs:
 
             const customIntro = "👋 Hey community! The latest release is here. Check out what's new and improved:\n\n";
 
-            return customIntro + cleanNotes;
+            if(!cleanNotes) {
+              return customIntro + "No changelog entries for this release.";
+            }
+
+            const finalNotes = customIntro + cleanNotes;
+
+            // Remove surrounding quotes if present
+            if(finalNotes.startsWith('"') && finalNotes.endsWith('"')) {
+              return finalNotes.slice(1, -1);
+            }
+
+            return finalNotes;
         env:
           TAG_NAME: ${{ steps.version.outputs.tag }}
 
